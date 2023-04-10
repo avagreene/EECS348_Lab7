@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+                form {
+                        margin: 50px auto;
+                        max-width: 600px;
+                        padding: 20px;
+                        border: 2px solid black;
+                        background-color: #f2f2f2;
+                }
+
+                input[type="password"] {
+                        display: block;
+                        margin-bottom: 10px;
+                        padding: 10px;
+                        font-size: 18px;
+                        border-radius: 5px;
+                        border: 1px solid #ccc;
+                }
+
+                button[type="submit"] {
+                        padding: 10px;
+                        font-size: 18px;
+                        border-radius: 5px;
+                        background-color: #0066cc;
+                        color: #fff;
+                        border: none;
+                        cursor: pointer;
+                }
+        </style>
+</head>
+<body>
+        <form>
+                <label for="password1">Enter password:</label>
+                <input type="password" id="password1" name="password1">
+
+                <label for="password2">Confirm password:</label>
+                <input type="password" id="password2" name="password2">
+
+                <button type="submit" id="submit">Submit</button>
+        </form>
+
+        <script>
+                const passwordInput1 = document.getElementById("password1");
+                const passwordInput2 = document.getElementById("password2");
+
+                const submitBtn = document.getElementById("submit");
+                function verifyPasswords() {
+                        const password1 = passwordInput1.value;
+                        const password2 = passwordInput2.value;
+
+                        if (password1.length < 8 || password2.length < 8) {
+                                alert("8 characters or more please");
+                        }
+                        else if (password1 !== password2) {
+                                alert("Passwords don't match");
+                        } else {
+                                alert("Passwords match!");
+                        }
+                }
+
+                submitBtn.addEventListener("click", verifyPasswords);
+        </script>
+</body>
+</html>
