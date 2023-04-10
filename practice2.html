@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* Style for the input elements */
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input[type="number"] {
+        width: 30%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 20px;
+        border: 2px solid black;
+        padding: 10px;
+        margin: 20px 0;
+      }
+
+      .highlight {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <label for="red">Border Red:</label>
+    <input type="number" id="red" name="red" min="0" max="255" placeholder="0-255" oninput="updateBorderColor()">
+
+    <label for="green">Border Green:</label>
+    <input type="number" id="green" name="green" min="0" max="255" placeholder="0-255" oninput="updateBorderColor()">
+
+    <label for="blue">Border Blue:</label>
+    <input type="number" id="blue" name="blue" min="0" max="255" placeholder="0-255" oninput="updateBorderColor()">
+
+    <label for="border-width">Border Width (1-10):</label>
+    <input type="number" id="border-width" name="border-width" min="1" max="10" value="2" oninput="updateBorderColor()">
+
+    <label for="highlight-color">Highlight Color:</label>
+    <input type="text" id="highlight-color" name="highlight-color" placeholder="Enter a color name" oninput="updateHighlightColor()">
+
+
+    <p id="text">Hello :)</p>
+
+    <script>
+      function updateBorderColor() {
+        var red = document.getElementById('red').value;
+        var green = document.getElementById('green').value;
+        var blue = document.getElementById('blue').value;
+        var borderWidth = document.getElementById('border-width').value;
+        var textElement = document.getElementById('text');
+
+        if (red >= 0 && red <= 255 && green >= 0 && green <= 255 && blue >= 0 && blue <= 255 && borderWidth >= 1 && borderWidth <= 10) {
+          var rgbColor = 'rgb(' + red + ',' + green + ',' + blue + ')';
+          textElement.style.border = borderWidth + 'px solid ' + rgbColor;
+        }
+      }
+
+      function updateHighlightColor() {
+        var highlightColor = document.getElementById('highlight-color').value;
+        var textElements = document.getElementsByTagName('p');
+
+        for (var i = 0; i < textElements.length; i++) {
+          textElements[i].classList.remove('highlight');
+          textElements[i].style.backgroundColor = '';
+          textElements[i].style.color = '';
+        }
+
+        if (highlightColor != '') {
+          var highlightedText = document.querySelectorAll('p:not(.highlight)');
+          for (var i = 0; i < highlightedText.length; i++) {
+            highlightedText[i].style.backgroundColor = highlightColor;
+            highlightedText[i].style.color = '#000';
+            highlightedText[i].classList.add('highlight');
+          }
+        }
+      }
+
+
+    </script>
+  </body>
+</html>
